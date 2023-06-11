@@ -13,6 +13,18 @@ services:
       - POSTGRES_DB=mydb
       - POSTGRES_USER=kswelder
       - POSTGRES_PASSWORD=5544
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "email@email.com"
+      PGADMIN_DEFAULT_PASSWORD: "12345"
+    ports:
+      - "15432:80"
+    depends_on:
+      - data_base
+    networks:
+      - msnetwork
 
 networks:
   msnetwork:
