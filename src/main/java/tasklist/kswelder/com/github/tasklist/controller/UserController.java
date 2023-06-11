@@ -28,9 +28,9 @@ public class UserController {
     public ResponseEntity<UserDTO> userSave(@RequestBody User user) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
     }
-    @PutMapping(path = "/update")
-    public ResponseEntity<UserDTO> userUpdate(@RequestBody User user) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.update(user));
+    @PutMapping(path = "/update/{username}")
+    public ResponseEntity<UserDTO> userUpdate(@RequestBody User user, @PathVariable(value = "username") String username) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.update(user, username));
     }
     @DeleteMapping(path = "/delete/{username}")
     public ResponseEntity<UserDTO> userDelete(@PathVariable(value = "username") String username) {
