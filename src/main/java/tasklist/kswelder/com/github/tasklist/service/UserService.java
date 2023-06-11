@@ -29,13 +29,10 @@ public class UserService {
 
         return new UserDTO(user);
     }
-    public UserDTO update(User user) {
-        if (Optional.of(user).isEmpty()) {
-            throw new RuntimeException("Error");
-        }
+    public UserDTO update(User user, String username) {
         LocalDateTime localDateTime = LocalDateTime.now();
 
-        User register = Optional.of(userRepository.findByUsername(user.getUsername()))
+        User register = Optional.of(userRepository.findByUsername(username))
                 .orElseThrow(() -> new RuntimeException("Error"));
 
         register.setPassword(user.getPassword());
